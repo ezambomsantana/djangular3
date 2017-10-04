@@ -11,6 +11,8 @@ class House(models.Model):
     	return {
     		'address': self.address,
     	}
+    def __str__( self ):
+        return "{0}:{1}".format( self.address, self.house_type )
 
 class Camera(models.Model):
     name = models.CharField(max_length=256)
@@ -20,3 +22,5 @@ class Camera(models.Model):
     	return {
     		'name': self.name,
     	}
+    def __str__( self ):
+        return "{0}:{1}".format( self.name, self.house )
