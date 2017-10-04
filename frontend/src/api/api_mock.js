@@ -57,6 +57,20 @@ angular.module('appapi').factory('AppApi', function($q, $timeout, $log){
 		];
 	}
 
+	function list_houses(filters){
+		return [
+			{address: 'Casa 1'},
+			{address: 'Casa 2'}
+		];
+	}
+
+	function list_cameras_filter_by_house(filters){
+		return [
+			{name: 'Quarta'},
+			{name: 'Sala'}
+		];
+	}
+
 	function get_user_details(username){
 		var fakeuser = {
 			username: username,

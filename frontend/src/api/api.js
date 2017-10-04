@@ -7,6 +7,8 @@ angular.module('appapi').factory('AppApi', function(AppAjax){
 		logout: logout,
 		whoami: whoami,
 		list_cameras: list_cameras,
+		list_cameras_filter_by_house : list_cameras_filter_by_house,
+		list_houses: list_houses,
 		get_user_details: get_user_details,
 	};
 
@@ -28,6 +30,14 @@ angular.module('appapi').factory('AppApi', function(AppAjax){
 		return AppAjax.get('/api/list_cameras', {filters: angular.toJson(filters)});
 	}
 
+	function list_houses(filters){
+		return AppAjax.get('/api/list_houses', {filters: angular.toJson(filters)});
+	}
+
+	function list_cameras_filter_by_house(filters){
+		return AppAjax.get('/api/list_cameras_filter_by_house', {filters: angular.toJson(filters)});
+	}
+	
 	function get_user_details(username){
 		return AppAjax.get('/api/get_user_details', {username: username});	
 	}

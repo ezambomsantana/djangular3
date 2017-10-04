@@ -2,7 +2,7 @@ import json
 from django.http.response import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import auth
-from cameras.models import Camera
+from cameras.models import Camera, House
 from cameras.decorators import ajax_login_required
 
 def login(request):
@@ -40,10 +40,37 @@ def get_user_details(request):
 @ajax_login_required
 def list_cameras(request):
     filters = json.loads(request.GET.get('filters', '{}'))
-    cams = Camera.objects.all()
+    cams = ''
+    if filters == {}:
+        cams = Camera.objects.all()
+    else:
+        try:
+            cams = Camera.objects.filter(name = filters) 
+        except Camera.DoesNotExist:
+            cams = {}
     cams_dic = [c.to_dict_json() for c in cams]
     return HttpResponse(json.dumps(cams_dic), content_type='application/json')
 
+@ajax_login_required
+def list_cameras_filter_by_house(request):
+    filters = json.loads(request.GET.get('filters', '{}'))
+    cams = ''
+    if filters == {}:
+        cams = Camera.objects.all()
+    else:
+        try:
+            cams = Camera.objects.filter(house__address=filters)
+        except Camera.DoesNotExist:
+            cams = {}
+    cams_dic = [c.to_dict_json() for c in cams]
+    return HttpResponse(json.dumps(cams_dic), content_type='application/json')
+
+@ajax_login_required
+def list_houses(request):
+    filters = json.loads(request.GET.get('filters', '{}'))
+    houses = House.objects.all()
+    houses_dic = [h.to_dict_json() for h in houses]
+    return HttpResponse(json.dumps(houses_dic), content_type='application/json')
 
 def _user2dict(user):
     return {

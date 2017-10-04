@@ -8,6 +8,7 @@
 		'appviewuser',
 		'appapi',
 		'cameras',
+		'houses',
 		'appajax',
 	];
 	if(APP.USE_TEAMPLE_CACHE){
@@ -23,6 +24,7 @@
 	        .state('home', {url: '/', template: '<apphome></apphome>'})
 	        .state('admin', {url: '/admin', template: '<appadmin></appadmin>'})
 	        .state('cameras', {url: '/cameras', template: '<cameras></cameras>'})
+	        .state('houses', {url: '/houses', template: '<houses></houses>'})
 	        .state('login', {url: '/login', template: '<applogin></applogin>'})
 	        .state('viewuser', {url: '/user/:login', template: '<appviewuser></appviewuser>', controller: 'ViewUserStateCtrl'})
 	});

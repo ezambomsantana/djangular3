@@ -3,4 +3,17 @@
 	<ul>
 		<li ng-repeat="camera in repo.cameras">{[{camera.name}]}</li>
 	</ul>
+
+
+	<div>
+		<input type="text" placeholder="filter by name" ng-model="repo.filter_text">
+	</div>
+	<button ng-click="repo.filterByName()">OK</button>
+
+	<div>
+		<select ng-model="repo.selected_house" ng-options="x.address for x in repo.houses"></select>
+	</div>
+	<button ng-click="repo.filterByHouse()">OK</button>
+
 </div>
+
